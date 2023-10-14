@@ -1,25 +1,21 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Layout } from './components/Layout';
+import { HomeScreen } from './screens/Home';
+import { LoginScreen } from './screens/Login';
+import { NotFoundScreen } from './screens/NotFound';
 
 const App = () => {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: (
-        <Layout>
-          <div>
-            <h1>Home Screen</h1>
-          </div>
-        </Layout>
-      ),
+      element: <HomeScreen />,
     },
     {
       path: '/login',
-      element: <div>Login Screen</div>,
+      element: <LoginScreen />,
     },
     {
       path: '*',
-      element: <div>Not Found Screen</div>,
+      element: <NotFoundScreen />,
     },
   ]);
 
