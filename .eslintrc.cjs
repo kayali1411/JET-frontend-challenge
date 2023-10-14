@@ -16,5 +16,7 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['react-refresh', 'react', '@typescript-eslint'],
-  rules: {},
+  rules: {
+    'react/prop-types': ['off'],
+  },
 }
