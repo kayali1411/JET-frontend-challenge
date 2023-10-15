@@ -12,9 +12,9 @@ const RoomsList: React.FC<IProps> = ({ rooms, isLoading, isError }) => {
   console.log({ isLoading, isError });
 
   return (
-    <div>
+    <div className="w-64 drop-shadow-sm">
       <h3 className="text-info font-bold py-4">Choose a game room</h3>
-      <ul className="w-64">
+      <ul>
         {rooms.map((room) => (
           <Room key={room.id} room={room} />
         ))}

@@ -12,6 +12,7 @@ import {
   resetGame,
   setGameIsOver,
   setGameRoom,
+  setGameStarted,
   setGameState,
   setWinner,
 } from '../redux/gameStatsSlice';
@@ -21,6 +22,7 @@ const gameAPI = (() => {
   // TODO use dotenv
   const socket = io('ws://localhost:8082', { transports: ['websocket'] });
   let selectedRoom: Room | null = null;
+  let isGameStarted = false;
 
   // TODO add cleanup for socket listeners
   const initialize = () => {
@@ -48,11 +50,14 @@ const gameAPI = (() => {
     });
 
     socket.on('error', ({ message }) => {
-      // TODO add error component
       store.dispatch(setError(message));
     });
 
     socket.on('randomNumber', ({ number, isFirst, selectdNumber, user }) => {
+      if (!isGameStarted) {
+        isGameStarted = true;
+        store.dispatch(setGameStarted());
+      }
       store.dispatch(
         addTurn({
           result: number,

@@ -55,7 +55,7 @@ const LoginForm = () => {
           />
           {error && <span className="text-red-500">{error}</span>}
           <button
-            className="bg-primray p-2 text-white rounded-md"
+            className="bg-primray p-2 text-white rounded-md cursor-pointer"
             type="submit"
           >
             Login

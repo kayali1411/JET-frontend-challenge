@@ -7,6 +7,7 @@ interface GameStatsState {
   room: Room | null;
   isOver: boolean;
   isReady: boolean;
+  isStarted: boolean;
   winner: string;
 }
 
@@ -15,6 +16,7 @@ const initialState: GameStatsState = {
   room: null,
   isOver: false,
   isReady: false,
+  isStarted: false,
   winner: '',
 };
 
@@ -28,6 +30,7 @@ export const gameStatsSlice = createSlice({
     },
     setGameIsOver: (state) => {
       state.isOver = true;
+      state.isStarted = false;
     },
     addTurn: (state, action: PayloadAction<Turn>) => {
       state.turnsHistory = [...state.turnsHistory, action.payload];
@@ -38,6 +41,9 @@ export const gameStatsSlice = createSlice({
     setGameRoom: (state, action: PayloadAction<Room>) => {
       state.room = action.payload;
     },
+    setGameStarted: (state) => {
+      state.isStarted = true;
+    },
     resetGame: () => initialState,
   },
 });
@@ -47,6 +53,7 @@ export const {
   setGameRoom,
   setGameState,
   setGameIsOver,
+  setGameStarted,
   addTurn,
   resetGame,
 } = gameStatsSlice.actions;
