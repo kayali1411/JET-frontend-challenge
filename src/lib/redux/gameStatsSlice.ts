@@ -1,20 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { GameStatus, Room, Turn } from '../types/gameStats';
+import type { Room, Turn } from '../types/gameStats';
 
 interface GameStatsState {
-  turns: Turn[];
+  turnsHistory: Turn[];
   room: Room | null;
-  state: GameStatus | null;
   isOver: boolean;
+  isReady: boolean;
   winner: string;
 }
 
 const initialState: GameStatsState = {
-  turns: [],
+  turnsHistory: [],
   room: null,
-  state: null,
   isOver: false,
+  isReady: false,
   winner: '',
 };
 
@@ -26,19 +26,29 @@ export const gameStatsSlice = createSlice({
       state.winner = action.payload;
       state.isOver = true;
     },
-    setGameState: (state, action: PayloadAction<GameStatus>) => {
-      state.state = action.payload;
+    setGameIsOver: (state) => {
+      state.isOver = true;
     },
     addTurn: (state, action: PayloadAction<Turn>) => {
-      state.turns = [...state.turns, action.payload];
+      state.turnsHistory = [...state.turnsHistory, action.payload];
+    },
+    setGameState: (state, action: PayloadAction<boolean>) => {
+      state.isReady = action.payload;
     },
     setGameRoom: (state, action: PayloadAction<Room>) => {
       state.room = action.payload;
     },
+    resetGame: () => initialState,
   },
 });
 
-export const { setWinner, setGameRoom, setGameState, addTurn } =
-  gameStatsSlice.actions;
+export const {
+  setWinner,
+  setGameRoom,
+  setGameState,
+  setGameIsOver,
+  addTurn,
+  resetGame,
+} = gameStatsSlice.actions;
 
 export default gameStatsSlice;

@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 export const errorSlice = createSlice({
-  name: 'player',
+  name: 'error',
   initialState: {
     errorMessage: '',
   },
