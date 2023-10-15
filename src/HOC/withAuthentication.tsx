@@ -4,15 +4,16 @@ import { useAppSelector } from '../lib/redux';
 import { LOGIN_ROUTE } from '../config/routes';
 
 // TODO move it to helpers or utils
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function getDisplayName(WrappedComponent: React.ComponentType<any>) {
-  return WrappedComponent.displayName || WrappedComponent.name || 'Component';
+function getDisplayName(WrappedComponent: React.ComponentType) {
+  return (
+    WrappedComponent.displayName ||
+    WrappedComponent.name ||
+    'PrivateScreenComponent'
+  );
 }
 
-const withAuthentication = <P extends object>(
-  WrappedComponent: React.ComponentType<P>,
-) => {
-  const WithAuth: React.FC<P> = (props) => {
+const withAuthentication = (WrappedComponent: React.ComponentType) => {
+  const WithAuth: React.FC = () => {
     const [loading, setLoading] = useState(true);
     const isLoggedin = useAppSelector((state) => state.player.isLoggedin);
     const navigate = useNavigate();
@@ -25,7 +26,7 @@ const withAuthentication = <P extends object>(
       setLoading(false);
     }, [isLoggedin]);
 
-    return loading ? null : <WrappedComponent {...props} />;
+    return loading ? null : <WrappedComponent />;
   };
 
   // Set a display name for the HOC
