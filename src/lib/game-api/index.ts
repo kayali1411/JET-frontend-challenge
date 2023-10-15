@@ -103,8 +103,8 @@ const gameAPI = (() => {
     socket.emit('letsPlay');
   };
 
-  const sendNumber = (selectedNumber: number) => {
-    socket.emit('sendNumber', { selectedNumber });
+  const sendNumber = (number: number, selectedNumber: number) => {
+    socket.emit('sendNumber', { number, selectedNumber });
   };
 
   return {

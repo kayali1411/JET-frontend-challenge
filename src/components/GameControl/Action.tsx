@@ -1,13 +1,19 @@
 import React from 'react';
 import gameAPI from '../../lib/game-api';
+import { useAppSelector } from '../../lib/redux';
 interface IProps {
   action: number;
 }
 
 const Action: React.FC<IProps> = ({ action }) => {
+  const currentNumber = useAppSelector(
+    (state) => state.gameStats.currentNumber,
+  );
+
   const handleClick = () => {
-    gameAPI.sendNumber(action);
+    gameAPI.sendNumber(currentNumber, action);
   };
+
   return (
     <button
       type="button"
