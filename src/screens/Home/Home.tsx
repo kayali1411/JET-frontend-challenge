@@ -1,11 +1,13 @@
 import { withAuthentication } from '../../HOC';
 import { Layout } from '../../components/Layout';
+import { RoomsListContainer } from '../../components/RoomsTab';
 
 const HomeScreen = () => {
   return (
     <Layout>
-      <div>
-        <h1>Home Page</h1>
+      <div className="flex w-full justify-center space-x-8">
+        <RoomsListContainer />
+        <div>game area</div>
       </div>
     </Layout>
   );
