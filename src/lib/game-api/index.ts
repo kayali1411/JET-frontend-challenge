@@ -60,13 +60,13 @@ const gameAPI = (() => {
         store.dispatch(setGameStarted());
       }
       if (isFirst) {
-        store.dispatch(setInitialNumber(number));
+        store.dispatch(setInitialNumber(Number(number)));
       }
       store.dispatch(
         addTurn({
-          result: number,
+          result: Number(number),
           isFirst,
-          selectedNumber: selectdNumber,
+          selectedNumber: Number(selectdNumber),
           player: user,
         }),
       );
