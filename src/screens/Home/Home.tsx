@@ -1,5 +1,6 @@
 import { withAuthentication } from '../../HOC';
 import { Layout } from '../../components/Layout';
+import { RandomNumberDisplay } from '../../components/RandomNumberDisplay';
 import { RoomsListContainer } from '../../components/RoomsTab';
 import { StartGame } from '../../components/StartGame';
 
@@ -10,6 +11,7 @@ const HomeScreen = () => {
         <RoomsListContainer />
         <div className="w-2/5 bg-white p-6 drop-shadow-sm">
           <StartGame />
+          <RandomNumberDisplay />
         </div>
       </div>
     </Layout>
