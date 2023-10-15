@@ -14,6 +14,7 @@ import {
   setGameRoom,
   setGameStarted,
   setGameState,
+  setInitialNumber,
   setWinner,
 } from '../redux/gameStatsSlice';
 import { setError } from '../redux/errorSlice';
@@ -57,6 +58,9 @@ const gameAPI = (() => {
       if (!isGameStarted) {
         isGameStarted = true;
         store.dispatch(setGameStarted());
+      }
+      if (isFirst) {
+        store.dispatch(setInitialNumber(number));
       }
       store.dispatch(
         addTurn({
