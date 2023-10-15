@@ -1,3 +1,4 @@
+import { withAuthentication } from '../../HOC';
 import { Layout } from '../../components/Layout';
 
 const HomeScreen = () => {
@@ -10,4 +11,4 @@ const HomeScreen = () => {
   );
 };
 
-export default HomeScreen;
+export default withAuthentication(HomeScreen);
