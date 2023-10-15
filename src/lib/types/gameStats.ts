@@ -22,3 +22,9 @@ export type Turn = {
   result: number;
   player: string;
 };
+
+export type User = {
+  id: string;
+  name: string;
+  room: string;
+};
