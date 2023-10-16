@@ -19,67 +19,97 @@ import {
 } from '../redux/gameStatsSlice';
 import { setError } from '../redux/errorSlice';
 
+type EventListeners = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [eventName: string]: (payload: any) => void;
+};
+
 const gameAPI = (() => {
   // TODO use dotenv
   const socket = io('ws://localhost:8082', { transports: ['websocket'] });
   let isGameStarted = false;
+  const eventListeners: EventListeners = {};
 
-  // TODO add cleanup for socket listeners
+  window.addEventListener('beforeunload', () => {
+    Object.keys(eventListeners).forEach((eventName) => {
+      removeEventListener(eventName);
+    });
+  });
+
+  const addEventListener = (
+    eventName: string,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    callback: (payload: any) => void,
+  ) => {
+    socket.on(eventName, callback);
+    eventListeners[eventName] = callback;
+  };
+
+  const removeEventListener = (eventName: string) => {
+    if (eventListeners[eventName]) {
+      socket.off(eventName, eventListeners[eventName]);
+      delete eventListeners[eventName];
+    }
+  };
+
   const initialize = () => {
-    socket.on('connect', () => {
+    addEventListener('connect', () => {
       store.dispatch(setSessionId(socket.id));
     });
 
-    socket.on('message', ({ user, socketId }) => {
+    addEventListener('message', ({ user, socketId }) => {
       if (user && socket.id === socketId) {
         store.dispatch(loginPlayer(user));
       }
     });
 
-    socket.on('onReady', ({ state }) => {
+    addEventListener('onReady', ({ state }) => {
       if (isGameStarted) {
         store.dispatch(setGameIsOver());
       }
       store.dispatch(setGameState(state));
     });
 
-    socket.on('gameOver', ({ user }) => {
+    addEventListener('gameOver', ({ user }) => {
       store.dispatch(setWinner(user));
     });
 
-    socket.on('error', ({ message }) => {
+    addEventListener('error', ({ message }) => {
       store.dispatch(setError(message));
     });
 
-    socket.on('randomNumber', ({ number, isFirst, selectedNumber, user }) => {
-      if (!isGameStarted) {
-        isGameStarted = true;
-        store.dispatch(setGameStarted());
-      }
-      if (isFirst) {
-        store.dispatch(setInitialNumber(Number(number)));
-      } else {
-        store.dispatch(
-          addTurn({
-            result: Number(number),
-            isFirst,
-            selectedNumber: Number(selectedNumber),
-            player: user,
-          }),
-        );
-      }
-    });
+    addEventListener(
+      'randomNumber',
+      ({ number, isFirst, selectedNumber, user }) => {
+        if (!isGameStarted) {
+          isGameStarted = true;
+          store.dispatch(setGameStarted());
+        }
+        if (isFirst) {
+          store.dispatch(setInitialNumber(Number(number)));
+        } else {
+          store.dispatch(
+            addTurn({
+              result: Number(number),
+              isFirst,
+              selectedNumber: Number(selectedNumber),
+              player: user,
+            }),
+          );
+        }
+      },
+    );
 
-    socket.on('activateYourTurn', ({ user, state }) => {
+    addEventListener('activateYourTurn', ({ user, state }) => {
       if (user === socket.id) {
         store.dispatch(setTurnState(state));
       }
     });
 
-    socket.on('disconnect', () => {
+    addEventListener('disconnect', () => {
       store.dispatch(resetGame());
       store.dispatch(resetPlayer());
-      store.dispatch(setError('Disconnected from server'));
+      store.dispatch(setError('Disconnected from the server'));
     });
   };
 
