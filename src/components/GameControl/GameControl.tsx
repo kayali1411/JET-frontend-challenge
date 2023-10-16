@@ -7,10 +7,11 @@ import Action from './Action';
 const GameControl = () => {
   const isStarted = useAppSelector((state) => state.gameStats.isStarted);
   const turnState = useAppSelector((state) => state.player.turnState);
+  const isGameOver = useAppSelector((state) => state.gameStats.isOver);
 
   const actions = [-1, 0, 1];
 
-  if (!isStarted) {
+  if (!isStarted || isGameOver) {
     return <React.Fragment />;
   }
 

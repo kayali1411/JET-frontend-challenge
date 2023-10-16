@@ -96,8 +96,9 @@ const gameAPI = (() => {
 
   const leaveRoom = () => {
     socket.emit('leaveRoom');
+    selectedRoom = null;
+    isGameStarted = false;
     store.dispatch(resetGame());
-    store.dispatch(resetPlayer());
   };
 
   const letsPlay = () => {

@@ -3,6 +3,7 @@ import { RandomNumberDisplay } from '../../components/RandomNumberDisplay';
 import { StartGame } from '../../components/StartGame';
 import { TurnsHistoryContainer } from '../../components/TurnsHistory';
 import { useScrollableView } from '../../hooks';
+import { GameResult } from '../GameResult';
 
 const GameArea = () => {
   const { scrollableRef } = useScrollableView();
@@ -13,6 +14,7 @@ const GameArea = () => {
         <RandomNumberDisplay />
         <TurnsHistoryContainer />
         <GameControl />
+        <GameResult />
       </div>
     </div>
   );
