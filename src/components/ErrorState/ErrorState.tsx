@@ -18,10 +18,13 @@ const ErrorState = () => {
   return (
     <div className="fixed flex justify-center top-24 left-0 z-20 right-0">
       <div
+        data-testid="error-state-block"
         onClick={handleClick}
         className="bg-red-500 text-white p-4 w-1/2 rounded-lg drop-shadow-md cursor-pointer"
       >
-        <span>Error: {message}, click to remove it</span>
+        <span data-testid="error-state">
+          Error: {message}, click to remove it
+        </span>
       </div>
     </div>
   );
