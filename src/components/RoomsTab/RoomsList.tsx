@@ -22,7 +22,7 @@ const RoomsList: React.FC<IProps> = ({ rooms, isLoading, isError }) => {
 
   if (isLoading) {
     return (
-      <div className="animate-pulse flex flex-col w-64 h-64 py-4">
+      <div className="animate-pulse flex flex-col w-full md:w-64 h-64 py-4">
         <div className="w-full h-24 mb-1 bg-zinc-300" />
         <div className="w-full h-24 mb-1 border-white bg-zinc-300" />
         <div className="w-full h-24 bg-zinc-300" />
@@ -31,7 +31,7 @@ const RoomsList: React.FC<IProps> = ({ rooms, isLoading, isError }) => {
   }
 
   return (
-    <div className="w-64 drop-shadow-sm">
+    <div className="w-full md:w-64 drop-shadow-sm">
       <h3 className="text-info font-bold py-4">Choose a game room</h3>
       <ul>
         {rooms.map((room) => (

@@ -8,7 +8,7 @@ import { GameResult } from '../GameResult';
 const GameArea = () => {
   const { scrollableRef } = useScrollableView();
   return (
-    <div className="w-2/5 max-h-[calc(100vh-147px)] bg-white p-6 drop-shadow-sm overflow-hidden">
+    <div className="w-full md:w-3/4 lg:w-1/2 max-h-[calc(100vh-147px)] bg-white p-6 drop-shadow-sm overflow-hidden">
       <div className="overflow-auto h-full" ref={scrollableRef}>
         <StartGame />
         <RandomNumberDisplay />
