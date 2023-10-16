@@ -13,7 +13,7 @@ interface GameStatsState {
   winner: string;
 }
 
-const initialState: GameStatsState = {
+export const initialState: GameStatsState = {
   turnsHistory: [],
   room: null,
   isOver: false,
