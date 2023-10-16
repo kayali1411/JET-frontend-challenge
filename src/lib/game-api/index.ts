@@ -22,7 +22,6 @@ import { setError } from '../redux/errorSlice';
 const gameAPI = (() => {
   // TODO use dotenv
   const socket = io('ws://localhost:8082', { transports: ['websocket'] });
-  let selectedRoom: Room | null = null;
   let isGameStarted = false;
 
   // TODO add cleanup for socket listeners
@@ -38,9 +37,6 @@ const gameAPI = (() => {
     });
 
     socket.on('onReady', ({ state }) => {
-      if (state) {
-        store.dispatch(setGameRoom(selectedRoom!));
-      }
       if (isGameStarted) {
         store.dispatch(setGameIsOver());
       }
@@ -92,12 +88,11 @@ const gameAPI = (() => {
 
   const joinRoom = (room: Room, username: string) => {
     socket.emit('joinRoom', { room: room.name, roomType: room.type, username });
-    selectedRoom = room;
+    store.dispatch(setGameRoom(room));
   };
 
   const leaveRoom = () => {
     socket.emit('leaveRoom');
-    selectedRoom = null;
     isGameStarted = false;
     store.dispatch(resetGame());
   };

@@ -6,6 +6,7 @@ const StartGame = () => {
   const isGameReady = useAppSelector((state) => state.gameStats.isReady);
   const userName = useAppSelector((state) => state.player.userName);
   const isStarted = useAppSelector((state) => state.gameStats.isStarted);
+  const selectedRoom = useAppSelector((state) => state.gameStats.room);
 
   const handleClick = () => {
     gameAPI.letsPlay();
@@ -19,11 +20,17 @@ const StartGame = () => {
     <div>
       <h1 className="text-info font-bold text-3xl">Hello {userName}! 👋</h1>
       <div className="py-4">
-        <span className="text-info text-xl">
-          {isGameReady
-            ? 'Now click the button below to start the game.'
-            : 'Please select a room to join then start the game.'}
-        </span>
+        {!selectedRoom ? (
+          <span className="text-info text-lg">
+            Please select a room to join then start the game.
+          </span>
+        ) : (
+          <span className="text-info text-lg">
+            {isGameReady
+              ? 'Now click the button below to start the game.'
+              : 'Waiting for another player to join the room.'}
+          </span>
+        )}
       </div>
       <button
         className="bg-primray p-2 text-white rounded-md cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
