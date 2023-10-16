@@ -5,7 +5,7 @@ import type { Room, User } from '../types/gameStats';
 export const gameApiSlice = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:3004', // TODO use dotenv
+    baseUrl: import.meta.env.VITE_API_URL,
   }),
   endpoints: (builder) => ({
     fetchRooms: builder.query<Room[], void>({

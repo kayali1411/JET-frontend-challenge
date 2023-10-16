@@ -25,8 +25,9 @@ type EventListeners = {
 };
 
 const gameAPI = (() => {
-  // TODO use dotenv
-  const socket = io('ws://localhost:8082', { transports: ['websocket'] });
+  const socket = io(import.meta.env.VITE_API_WS_URL, {
+    transports: ['websocket'],
+  });
   let isGameStarted = false;
   const eventListeners: EventListeners = {};
 
