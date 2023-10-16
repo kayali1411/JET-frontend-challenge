@@ -10,7 +10,7 @@ interface PlayerState {
   turnState: GameStatus;
 }
 
-const initialState: PlayerState = {
+export const initialState: PlayerState = {
   userName: '',
   sessionId: '',
   isLoggedin: false,
