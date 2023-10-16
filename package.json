@@ -8,7 +8,9 @@
     "build": "tsc && vite build",
     "lint:fix": "npm run prettier:write && eslint ./src --fix && tsc",
     "prettier:write": "prettier --write 'src/**/*.{test.js,test.ts,js,jsx,ts,tsx}'",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
@@ -28,6 +30,7 @@
     "@typescript-eslint/eslint-plugin": "^6.7.5",
     "@typescript-eslint/parser": "^6.7.5",
     "@vitejs/plugin-react-swc": "^3.3.2",
+    "@vitest/coverage-istanbul": "^0.34.6",
     "autoprefixer": "^10.4.16",
     "eslint": "^8.51.0",
     "eslint-config-prettier": "^9.0.0",
@@ -39,6 +42,7 @@
     "prettier": "^3.0.3",
     "tailwindcss": "^3.3.3",
     "typescript": "^5.0.2",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "vitest": "^0.34.6"
   }
 }

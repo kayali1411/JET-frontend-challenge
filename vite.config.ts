@@ -15,5 +15,12 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: './src/setupTest.ts',
+    coverage: {
+      all: true,
+      include: ["src/**/*.tsx", "src/**/*.ts"],
+      reportsDirectory: './test-coverage',
+      reporter: ['text', 'json', 'html'],
+      provider: 'istanbul'
+    },
   },
 })
