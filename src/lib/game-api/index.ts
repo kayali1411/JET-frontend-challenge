@@ -79,6 +79,7 @@ const gameAPI = (() => {
     socket.on('disconnect', () => {
       store.dispatch(resetGame());
       store.dispatch(resetPlayer());
+      store.dispatch(setError('Disconnected from server'));
     });
   };
 
