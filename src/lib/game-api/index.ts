@@ -40,7 +40,8 @@ const gameAPI = (() => {
     socket.on('onReady', ({ state }) => {
       if (state) {
         store.dispatch(setGameRoom(selectedRoom!));
-      } else {
+      }
+      if (isGameStarted) {
         store.dispatch(setGameIsOver());
       }
       store.dispatch(setGameState(state));
