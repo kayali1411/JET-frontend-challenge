@@ -54,22 +54,23 @@ const gameAPI = (() => {
       store.dispatch(setError(message));
     });
 
-    socket.on('randomNumber', ({ number, isFirst, selectdNumber, user }) => {
+    socket.on('randomNumber', ({ number, isFirst, selectedNumber, user }) => {
       if (!isGameStarted) {
         isGameStarted = true;
         store.dispatch(setGameStarted());
       }
       if (isFirst) {
         store.dispatch(setInitialNumber(Number(number)));
+      } else {
+        store.dispatch(
+          addTurn({
+            result: Number(number),
+            isFirst,
+            selectedNumber: Number(selectedNumber),
+            player: user,
+          }),
+        );
       }
-      store.dispatch(
-        addTurn({
-          result: Number(number),
-          isFirst,
-          selectedNumber: Number(selectdNumber),
-          player: user,
-        }),
-      );
     });
 
     socket.on('activateYourTurn', ({ user, state }) => {

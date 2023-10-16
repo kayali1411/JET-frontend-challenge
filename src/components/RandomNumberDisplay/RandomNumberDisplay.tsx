@@ -14,7 +14,7 @@ const RandomNumberDisplay = () => {
   return (
     <div>
       <h1 className="text-info font-bold text-3xl">
-        The start number is {initialNumber}
+        The started number is {initialNumber}
       </h1>
     </div>
   );

@@ -26,7 +26,7 @@ const StartGame = () => {
         </span>
       </div>
       <button
-        className="bg-primray p-2 text-white rounded-md cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed"
+        className="bg-primray p-2 text-white rounded-md cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
         type="button"
         onClick={handleClick}
         disabled={!isGameReady}

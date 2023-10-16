@@ -38,6 +38,7 @@ export const gameStatsSlice = createSlice({
     },
     setInitialNumber: (state, action: PayloadAction<number>) => {
       state.initialNumber = action.payload;
+      state.currentNumber = action.payload;
     },
     addTurn: (state, action: PayloadAction<Turn>) => {
       state.turnsHistory = [...state.turnsHistory, action.payload];
