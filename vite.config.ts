@@ -6,6 +6,11 @@ import svgr from '@svgr/rollup';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), svgr({ typescript: true })],
+  server: {
+    host: true,
+    strictPort: true,
+    port: 3000,
+  },
   test: {
     globals: true,
     environment: 'jsdom',
