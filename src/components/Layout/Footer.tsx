@@ -3,7 +3,7 @@ import { ReactComponent as TextLogo } from '../../assets/jet-text-logo.svg';
 const Footer: React.FC = () => {
   return (
     <footer className="flex justify-between items-center p-4 bg-secondary">
-      <div>
+      <div data-testid="footer-logo">
         <TextLogo />
       </div>
       <div className="space-x-12">
