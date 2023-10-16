@@ -1,3 +1,5 @@
+import { useAppDispatch } from '../../lib/redux';
+import { setError } from '../../lib/redux/errorSlice';
 import type { Room as TRoom } from '../../lib/types/gameStats';
 import Room from './Room';
 
@@ -8,8 +10,25 @@ interface IProps {
 }
 
 const RoomsList: React.FC<IProps> = ({ rooms, isLoading, isError }) => {
-  // TODO - implement loading and error states
-  console.log({ isLoading, isError });
+  const dispatch = useAppDispatch();
+
+  if (isError) {
+    dispatch(
+      setError(
+        'Something went wrong while loading available rooms, please try again later.',
+      ),
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className="animate-pulse flex flex-col w-64 h-64 py-4">
+        <div className="w-full h-24 mb-1 bg-zinc-300" />
+        <div className="w-full h-24 mb-1 border-white bg-zinc-300" />
+        <div className="w-full h-24 bg-zinc-300" />
+      </div>
+    );
+  }
 
   return (
     <div className="w-64 drop-shadow-sm">
