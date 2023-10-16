@@ -35,7 +35,7 @@ const LoginForm = () => {
   return (
     <div className="w-full relative">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-lg drop-shadow-md flex flex-col space-y-4 items-center">
-        <div className="p-2 bg-primrayDark rounded-full w-min">
+        <div className="p-2 bg-primray rounded-full w-min">
           <Logo />
         </div>
         <h2>Please enter a username to login</h2>
