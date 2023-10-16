@@ -1,5 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import { render } from '@testing-library/react';
+import { MemoryRouter as Router } from 'react-router-dom';
 import type { RenderOptions } from '@testing-library/react';
 import type { PreloadedState } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
@@ -23,7 +24,11 @@ export function renderWithProviders(
   }: ExtendedRenderOptions,
 ) {
   function Wrapper({ children }: PropsWithChildren): JSX.Element {
-    return <Provider store={store}>{children}</Provider>;
+    return (
+      <Provider store={store}>
+        <Router>{children}</Router>
+      </Provider>
+    );
   }
 
   // Return an object with the store and all of RTL's query functions
