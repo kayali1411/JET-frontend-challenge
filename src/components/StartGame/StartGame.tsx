@@ -28,7 +28,7 @@ const StartGame = () => {
           <span className="text-info text-lg">
             {isGameReady
               ? 'Now click the button below to start the game.'
-              : 'Waiting for another player to join the room.'}
+              : 'Waiting for the second player to join the room.'}
           </span>
         )}
       </div>

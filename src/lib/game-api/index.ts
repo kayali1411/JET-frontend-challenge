@@ -118,15 +118,17 @@ const gameAPI = (() => {
     socket.emit('login', { username });
   };
 
-  const joinRoom = (room: Room, username: string) => {
+  const joinRoom = async (room: Room, username: string) => {
+    await leaveRoom(); // make sure to quit the previous room
     socket.emit('joinRoom', { room: room.name, roomType: room.type, username });
     store.dispatch(setGameRoom(room));
   };
 
-  const leaveRoom = () => {
+  const leaveRoom = async () => {
     socket.emit('leaveRoom');
     isGameStarted = false;
     store.dispatch(resetGame());
+    await new Promise((resolve) => setTimeout(resolve, 100));
   };
 
   const letsPlay = () => {
