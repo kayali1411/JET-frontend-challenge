@@ -1,27 +1,49 @@
-# React + TypeScript + Vite
+## Important Note
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- I updated `socket.io` version on the backend because I had a few issues with the backend service with the old version of `socket.io`
+- This is a clone for the backend service with the changes [repo-link](https://github.com/kayali1411/JET-backend-service).
+- Fix connectivity issue with older `socket.io` version and changes for updated version comptability
+- Emit `activateYourTurn` event to activate opponent turn when `sendNumber` is triggered by the other player.
+- No emiiting `randomNumber` by CPU player when last result is 1
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Installation and Commands
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+### **Clone The Project**
+```
+> git clone git@github.com:kayali1411/JET-frontend-challenge.git
+> cd JET-frontend-challenge
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### **Docker Users**
+
+- Rename `.env.local` to `.env`
+- Run `docker-compose up --build`
+
+### **Non Docker Users**
+
+- Prerequisites
+	- nodejs (latest LTS version , >= 16.15.0)
+- Rename `.env.local` to `.env`
+- In the root folder of the project run `npm install`
+- Start the app using `npm start`
+
+### **Unit Testing**
+
+- Run `npm run test`
+- To get coverage report run `npm run test:coverage`
+
+
+## Technical Description
+
+This project uses [vite](https://vitejs.dev/) as build tool and development server.
+
+### **Major Dependencies**
+
+-	TypeScript
+-	React
+-	`react-router-dom` for app routing
+-	`tailwindcss` for UI styling
+-	`socket.io-client` for socket communicatoin
+-	`react-redux` and `@redux/toolkit` for state management
+-	`@testing-library/react` and `vitest` for unit testing
