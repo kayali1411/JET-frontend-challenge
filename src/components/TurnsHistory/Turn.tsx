@@ -17,7 +17,11 @@ const Turn: React.FC<IProps> = ({ turn, isMe, prevTotal }) => {
         <div
           className={`rounded-full p-2 ${isMe ? 'bg-primray' : 'bg-secondary'}`}
         >
-          {isMe ? <Logo /> : <Person />}
+          {isMe ? (
+            <Logo data-testid="current-player-avatar" />
+          ) : (
+            <Person data-testid="opponent-player-avatar" />
+          )}
         </div>
         <div className="flex flex-col mx-4 space-y-4 w-80">
           <span
