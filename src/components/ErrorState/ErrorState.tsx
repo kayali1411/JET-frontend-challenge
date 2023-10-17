@@ -23,7 +23,7 @@ const ErrorState = () => {
         className="bg-red-500 text-white p-4 w-1/2 rounded-lg drop-shadow-md cursor-pointer"
       >
         <span data-testid="error-state">
-          Error: {message}, click to remove it
+          Error: {message}, click to hide the alert.
         </span>
       </div>
     </div>
