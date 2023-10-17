@@ -18,14 +18,14 @@
 
 ### **Docker Users**
 
-- Rename `.env.local` to `.env`
+- Rename `.env.example` to `.env`
 - Run `docker-compose up --build`
 
 ### **Non Docker Users**
 
 - Prerequisites
 	- nodejs (latest LTS version , >= 16.15.0)
-- Rename `.env.local` to `.env`
+- Rename `.env.example` to `.env`
 - In the root folder of the project run `npm install`
 - Start the app using `npm start`
 
