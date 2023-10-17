@@ -22,8 +22,9 @@ const LoginForm = () => {
     // TODO: validate if username is registered
     if (!username || username.trim().length === 0) {
       setError('Username is required!');
+    } else {
+      gameAPI.login(username);
     }
-    gameAPI.login(username);
   };
 
   useEffect(() => {
