@@ -22,7 +22,10 @@ const RoomsList: React.FC<IProps> = ({ rooms, isLoading, isError }) => {
 
   if (isLoading) {
     return (
-      <div className="animate-pulse flex flex-col w-full md:w-64 h-64 py-4">
+      <div
+        data-testid="rooms-list-loading-state"
+        className="animate-pulse flex flex-col w-full md:w-64 h-64 py-4"
+      >
         <div className="w-full h-24 mb-1 bg-zinc-300" />
         <div className="w-full h-24 mb-1 border-white bg-zinc-300" />
         <div className="w-full h-24 bg-zinc-300" />
